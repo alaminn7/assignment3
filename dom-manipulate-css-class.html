@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DOM Highlight</title>
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="myParagraph">Some text.</p>
+    <button onclick="highlightParagraph()">Highlight</button>
+
+    <script>
+        function highlightParagraph() {
+            const paragraph = document.getElementById('myParagraph');
+            paragraph.classList.add('highlight');
+        }
+    </script>
+</body>
+
+</html>

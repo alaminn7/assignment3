@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Form </title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="myForm" onsubmit="validateForm(event)">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <span id="nameError" class="error"></span>
+        </div>
+
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <span id="emailError" class="error"></span>
+        </div>
+
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <span id="passwordError" class="error"></span>
+        </div>
+
+        <div>
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+            <span id="confirmPasswordError" class="error"></span>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function validateForm(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Retrieve form field values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Clear error messages
+            clearErrors();
+
+            // Validate name
+            if (!name || !/^[A-Za-z]+$/.test(name)) {
+                displayError('name', 'Name should not be empty and should contain only letters.');
+            }
+
+            // Validate email
+            if (!email || !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email)) {
+                displayError('email', 'Invalid email address.');
+            }
+
+            // Validate password
+            if (!password || !/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(password)) {
+                displayError('password', 'Password should have a minimum length of 8 characters and contain at least one uppercase letter, one lowercase letter, and one digit.');
+            }
+
+            // Validate confirm password
+            if (password !== confirmPassword) {
+                displayError('confirmPassword', 'Passwords do not match.');
+            }
+
+            // Submit form if there are no errors
+            if (!document.getElementsByClassName('error').length) {
+                document.getElementById('myForm').submit();
+            }
+        }
+
+        // Function to display error message for a specific field
+        function displayError(fieldId, message) {
+            const errorSpan = document.getElementById(`${fieldId}Error`);
+            errorSpan.textContent = message;
+        }
+
+        // Function to clear error messages
+        function clearErrors() {
+            const errorSpans = document.getElementsByClassName('error');
+            Array.from(errorSpans).forEach(span => {
+                span.textContent = '';
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Common Events</title>
+</head>
+
+<body>
+
+    <h3>Click anywhere & press any key</h3>
+
+    <div>
+        <img id="image" src="https://picsum.photos/400/400" alt="">
+    </div>
+
+    <script>
+
+        // 7.JS Common Events:
+        // Implement a webpage with the following functionality:
+
+
+        // a.When the user clicks anywhere on the page, display an alert with the coordinates(x, y) of the click.
+        window.addEventListener('click', function (event) {
+            const x = event.clientX;
+            const y = event.clientY;
+            alert('Coordinates: ' + x + ', ' + y);
+        });
+
+        // b.When the user presses any key on the keyboard, display an alert with the key code of the pressed key.
+        window.addEventListener('keydown', function (event) {
+            const keyCode = event.keyCode || event.which;
+            alert('Key Code: ' + keyCode);
+        });
+
+
+        // c.When the user moves the mouse over an image, change the image source to another image of your choice.
+
+        const imageElement = document.getElementById('image');
+
+        const originalSource = imageElement.src;
+        const newSource = 'https://picsum.photos/500/500';
+
+        imageElement.addEventListener('mouseover', function () {
+            imageElement.src = newSource;
+        });
+
+        imageElement.addEventListener('mouseout', function () {
+            imageElement.src = originalSource;
+        });
+
+
+
+    </script>
+</body>
+
+</html>

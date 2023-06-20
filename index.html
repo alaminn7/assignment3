@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h2>1. Date Object</h2>
+    <h3>a. create a function that takes a date in the format "YYYY-MM-DD" as a parameter and returns the day of the week
+        for the date. the function should use the date object</h3>
+    <p><strong>Output : </strong> <span id="dayoftheWeek"></span></p>
+
+    <h3>b. Implement the function to display the day of the week for the current date.</h3>
+    <p><strong>Output : </strong> <span id="today"></span></p>
+
+    <hr>
+
+    <h2>2. Math Object:</h2>
+    <h3>a. Write a JavaScript function that takes an array of numbers as input and returns the square root of the sum of
+        squares of all the numbers. Use the Math object to perform the necessary calculations.</h3>
+    <p><strong>Take 17 and Output : - </strong> <span id="isNumberPrime"></span></p>
+
+    <h3>b. Implement the function to display the square root of the sum of squares for an array of numbers.</h3>
+    <p><strong>Output : </strong><span id="squrt"></span> </p>
+
+    <hr>
+
+    <h2>3.Numbers:</h2>
+    <h3>a. Write a JavaScript function that takes a positive integer as input and returns true if it is a prime number,
+        otherwise returns false.</h3>
+
+
+    <h2>6.Geolocation:</h2>
+    <h3>a. Implement a JavaScript function that retrieves the user's current location (latitude and longitude) using the
+        geolocation API.</h3>
+    <button onclick="getLocation()">Try It</button>
+    <p id="showgeoLocation"></p>
+
+    <script>
+        // 1. Date Object        
+        // a. create a function that takes a date in the format "YYYY-MM-DD" as a parameter and returns the day of the week for the date. the function should use the date object
+        function getDayOfWeek(dateString) {
+            const date = new Date(dateString);
+            const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const dayOfWeek = daysOfWeek[date.getDay()];
+            return dayOfWeek;
+        }
+
+        const date = '2023-06-18';
+        const day = getDayOfWeek(date);
+        console.log(day);
+        document.getElementById('dayoftheWeek').innerHTML = day;
+
+        // b. Implement the function to display the day of the week for the current date.
+        const current_date = new Date();
+        const current_day = getDayOfWeek(current_date);
+        console.log(current_day);
+        document.getElementById('today').innerHTML = current_day;
+
+
+        // 2. Math Object: 
+        // a. Write a javascript function that takes a positive integer as a input and returns true if it is a prime number, otherwise return false
+
+        function isPrime(number) {
+            if (number <= 1) {
+                return false;
+            }
+            for (let i = 2; i <= Math.sqrt(number); i++) {
+                if (number % i === 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        const number = 17;
+        const isNumberPrime = isPrime(number);
+        console.log(isNumberPrime);
+        document.getElementById('isNumberPrime').innerHTML = isNumberPrime;
+
+        // b. Implement the function to display the square root of the sum of the squares for an array of number in javascript
+
+        function calculateSquareRootOfSumOfSquares(numbers) {
+            if (!Array.isArray(numbers) || numbers.length === 0) {
+                return null;
+            }
+
+            const sumOfSquares = numbers.reduce((accumulator, number) => {
+                return accumulator + (number * number);
+            }, 0);
+
+            const squareRoot = Math.sqrt(sumOfSquares);
+            return squareRoot;
+        }
+
+        const numbers = [3, 4, 5];
+        const result = calculateSquareRootOfSumOfSquares(numbers);
+        console.log(result);  
+
+        document.getElementById('squrt').innerHTML = result;
+
+
+        // 3. Numbers
+        // a. Write a JavaScript function that takes a positive integer as input and returns true if it is a prime number, otherwise returns false.
+
+        function isPrimeNumber(num) {
+            if (num < 2) {
+                return false;
+            }
+
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        console.log(isPrimeNumber(19));
+        console.log(isPrimeNumber(12));
+        console.log(isPrimeNumber(29));
+
+        // b. Implement the function to check if a given positive integer is a prime number.
+        function isPositiveIntegerPrime(n) {
+            if (n <= 1) {
+                return false;
+            }
+
+            if (n === 2) {
+                return true;
+            }
+
+            if (n % 2 === 0) {
+                return false;
+            }
+
+            for (let i = 3; i <= Math.sqrt(n); i += 2) {
+                if (n % i === 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        console.log(isPositiveIntegerPrime(7));
+        console.log(isPositiveIntegerPrime(12));
+        console.log(isPositiveIntegerPrime(29));
+
+
+        // 4.Window Object:
+        // a. Create a function that opens a new window with a specified URL and dimensions (width and height).
+
+        // b. Implement the function to open a new window with the URL "https://www.example.com" and dimensions 800x600.
+        // Answer :
+        // openWindow('https://www.example.com', 800, 600);
+
+
+        // 5.Navigator Object:
+        // a. Write a JavaScript function that detects the user's browser name and version using the navigator object.
+
+        // Answer : 
+        // navigator.userAgent;
+        // navigator.appVersion;
+
+        // b. Implement the function to display the user's browser name and version.
+        navigator.sayswho = (function () {
+            var ua = navigator.userAgent;
+            var tem;
+            var M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+            if (/trident/i.test(M[1])) {
+                tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+                return 'IE ' + (tem[1] || '');
+            }
+            if (M[1] === 'Chrome') {
+                tem = ua.match(/\b(OPR|Edge)\/(\d+)/);
+                if (tem != null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
+            }
+            M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+            if ((tem = ua.match(/version\/(\d+)/i)) != null) M.splice(1, 1, tem[1]);
+            return M.join(' ');
+        })();
+
+        console.log(navigator.sayswho);
+
+
+        // 6.Geolocation:
+        // a. Implement a JavaScript function that retrieves the user's current location (latitude and longitude) using the geolocation API.
+
+        var x = document.getElementById("showgeoLocation");
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+            x.innerHTML = "Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude;
+        }
+
+
+    </script>
+</body>
+
+</html>

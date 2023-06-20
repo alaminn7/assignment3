@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dynamically Create List Items Example</title>
+</head>
+
+<body>
+    <ul id="List"></ul>
+
+    <script>
+        function createListItems() {
+            const ul = document.getElementById('List');
+
+            for (let i = 1; i <= 5; i++) {
+                const li = document.createElement('li');
+                li.textContent = i;
+                ul.appendChild(li);
+            }
+        }
+
+        // Call the function to create list items
+        createListItems();
+    </script>
+</body>
+
+</html>

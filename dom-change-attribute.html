@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Change Image Source</title>
+</head>
+
+<body>
+    <img id="Image" src="https://picsum.photos/200" alt="Initial Image">
+
+    <button onclick="changeImageSource()">Change Image</button>
+
+    <script>
+        function changeImageSource() {
+            const image = document.getElementById('Image');
+            image.src = 'https://picsum.photos/201'; // Replace with the new image URL
+            image.alt = 'New Image'; // Replace with the new image alt text
+        }
+    </script>
+</body>
+
+</html>
